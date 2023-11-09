@@ -1,0 +1,430 @@
+/* ALLGEMEINES */
+
+/* Stil für den gesamten Body */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%
+}
+
+/* Allgemeine Body-Stile */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: white;
+    color: #5d5d5d;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    --color-primary: #40E0D0;
+}
+
+/* Hauptbereichsstil */
+main {
+    flex: 1 0 auto;
+}
+
+/* Stil für Header und Footer */
+header, footer {
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* Footer-Stil */
+footer {
+    color: #f0f9ff;
+    font-size: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}   
+
+/* Standardstil für Textabsätze */
+p {
+    text-align: justify;
+}
+
+/* Überschriftenstil */
+h1, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+/* ------------------- */
+/* HEADER */
+
+/* Stil für den Header */
+header {
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+/* Stil für Brand-Name und Logo */
+.brandname {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+}
+
+/* Stil für das Logo */
+.logo {
+    width: 4rem;
+}
+
+/* Stil für die Navigationsleiste */
+.nav-bar {
+    display: flex;
+    align-items: end;
+}
+
+/* Stil für Navigationslinks */
+.nav-bar a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Stil für Material Icons */
+.material-icons {
+    cursor: pointer;
+}
+
+/* Stil für verschiedene Elemente in der Navigationsleiste */
+#search,
+#account,
+#home,
+#searchBar,
+#searchBar.active {
+    display: none;
+}
+
+/* Stil für das Suchfeld */
+#searchBar input[type="text"] {
+    width: 100%;
+    height: 2rem;
+    font-size: max(1.8vh, 12pt);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Stil für das Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Stil für Links im Overlay */
+.overlay a {
+    font-size: max(3vh, 20pt);
+    color: #fff;
+    text-decoration: none;
+    margin: 2em;
+}
+
+/* Stil für das Schließen-Symbol im Overlay */
+.close-icon {
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+/* Media Query für Bildschirmbreiten über 50em */
+@media screen and (min-width: 50em) {
+    /* Stiländerungen für den Header bei größeren Bildschirmen */
+    header {
+        padding: 0;
+    }
+    /* Anpassungen für das Logo bei größeren Bildschirmen */
+    .logo {
+        width: 3rem;
+        margin-left: 0.5em;
+    }
+    /* Anpassungen für die Navigationsleiste bei größeren Bildschirmen */
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        padding-right: 1em;
+    }
+
+    /* Ausblenden des Burger-Menüs bei größeren Bildschirmen */
+    #burger {
+        display: none;
+    }
+
+    /* Ausblenden des Overlays bei größeren Bildschirmen */
+    .overlay {
+        display: none;
+    }
+
+    /* Einblenden von Suchleiste und anderen Elementen bei größeren Bildschirmen */
+    #search,
+    #account,
+    #home,
+    #searchBar.active {
+        display: flex;
+    }
+}
+
+/*-------------*/
+/* MAIN */
+
+/* Stil für den Abschnitt Eye Catcher */
+.section-eyecatcher {
+    background-image: url(img/banner.jpg);
+    background-size: cover;
+    min-height: 18em;
+    background-position: 0 80%;
+}
+
+/* Stil für Überschriften in Post-Abschnitten */
+#page-home h2 {
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+/* Stil für die Post-Überschriften */
+.post-headline {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-bottom: 1em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Stil für die Liste der Posts */
+#post-list {
+    list-style-type: none;
+    padding: 1em;
+}
+
+/* Stil für Post-Listenpunkte */
+#post-list ul {
+    font-size: 110%;
+    display: flex;
+}
+
+/* Stil für einzelne Post-Elemente */
+#post-list li {
+    background-color: #FAFAFA;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+/* Stil für Post-Titel */
+.post-title {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+/* Stil für Benutzerlinks in Post-Elementen */
+#userlink1,
+#userlink2 {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+/* Stil für Benutzerbilder */
+.profile-picture {
+    width: 36px;
+    height: 36px;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/account_circle/v12/24px.svg') no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+/* Stil für Benutzernamen in Post-Elementen */
+.profile-username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120%;
+}
+
+/* Stil für Interaktionsbereiche */
+.interactions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Stil für die Like- und Kommentarbereiche */
+#likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+#comments {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+
+/* Stil für den Like-Button */
+.like-button {
+    width: 2em;
+    height: 2em;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/favorite_border/v12/24px.svg') no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+/* Stil für den bereits gelikten Button */
+.like-button.liked {
+    background-image: url('https://fonts.gstatic.com/s/i/materialicons/favorite/v12/24px.svg');
+}
+/* Stil für die Anzeige der Anzahl von Likes und Kommentaren */
+.like-number,
+.comments-number {
+    font-size: 20px;
+    margin-right: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Stil für den Kommentar-Button */
+.comment-button {
+    width: 2em;
+    height: 2em;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/insert_comment/v12/24px.svg') no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+/* Stil für "Mehr lesen" -Link */
+.read-more {
+    color: var(--color-primary);
+    cursor: pointer;
+    margin-top: 1em;
+    margin-bottom: 0em;
+}
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Media Query für Bildschirmbreiten über 50em */
+@media (min-width: 50em) {
+    /* Anpassungen für die Post-Liste bei größeren Bildschirmen */
+    #post-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    /* Anpassungen für einzelne Post-Elemente bei größeren Bildschirmen */
+    #post-list li {
+        width: 49%;
+    }
+}
+
+/* Media Query für Bildschirmbreiten über 75em */
+@media (min-width: 75em) {
+    /* Anpassungen für die Post-Liste bei noch größeren Bildschirmen */
+    #post-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    /* Weitere Anpassungen für einzelne Post-Elemente bei noch größeren Bildschirmen */
+    #post-list li {
+        width: 32%;
+    }
+}
+
+/*-------------*/
+/* FUSSBEREICH */
+
+/* Stil für den oberen Bereich des Fußbereichs */
+.top-footer {
+    background-color: black;
+}
+
+/* Stil für den unteren Bereich des Fußbereichs mit Hintergrundbild */
+.bottom-footer {
+    background-image: url('img/footer_background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+/* Stil für die Karten im Footer */
+footer .map {
+    width: 100%;
+}
+
+/* Stil für den sozialen Bereich im Footer */
+footer .social {
+    margin-top: 1em;
+    text-align:center;
+}
+
+/* Stil für Social-Media-Icons im Footer */
+.social img {
+    width: 6em;
+}
+/* Stil für Listen im Footer */
+footer ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+}
+/* Stil für einzelne Listenelemente im Footer */
+footer ul li {
+    border: none;
+    font-family: white;
+}
+/* Stil für Links in Listenelementen im Footer */
+footer ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
+/* Stil für Copyright-Anmerkungen im Footer */
+footer .copyright {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.hidden {
+    display: none !important;
+}

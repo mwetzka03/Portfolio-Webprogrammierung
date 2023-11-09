@@ -1,0 +1,62 @@
+/* Stil für die Benutzerbiografie */
+.user-biography {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stil für Informationsabschnitt des Namens */
+.name-info{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stil für Überschrift und Absatz im Namensabschnitt */
+.name-info h2, 
+.name-info p{
+    margin: 0;
+    padding: 0;
+}
+
+/* Stil für Geburts- und Standortinformationen */
+.birth-info,
+.location-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Stil für großes Profilbild */
+.profile-picture-big {
+    width: 8em;
+    height: 8em;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/account_circle/v12/24px.svg') no-repeat;
+    background-size: contain;
+    transition: background-color 0.3s;
+}
+
+/* Stil für das Standortsymbol */
+.location-img {
+    width: 2em;
+    height: 2em;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/room/v12/24px.svg') no-repeat;
+    background-size: contain;
+}
+
+/* Stil für das Geburtssymbol */
+.birth-img {
+    width: 2em;
+    height: 2em;
+    background: url('https://fonts.gstatic.com/s/i/materialicons/insert_invitation/v12/24px.svg') no-repeat;
+    background-size: contain;
+}
+
+/* Stil für Standort- und Geburtsinformationen */
+.location-info p,
+.birth-info p {
+    margin: 0;
+    text-align: right;
+}

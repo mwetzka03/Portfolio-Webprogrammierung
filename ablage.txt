@@ -1,0 +1,262 @@
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+document.addEventListener('DOMContentLoaded', function () {
+    let currentPage = 1;
+    const postsPerPage = 12;
+    const postList = document.getElementById('post-list');
+    const paginationContainer = document.getElementById('pagination');
+
+    function renderPosts(posts) {
+        postList.innerHTML = ''; // Leeren Sie die Liste, bevor Sie neue Posts hinzufügen
+
+        posts.forEach(post => {
+            let limitedBody = post.body;
+
+            if (post.body.length > 80) {
+                limitedBody = post.body.substring(0, 80);
+                if (post.body.charAt(80) !== ' ' && post.body.charAt(81) !== ' ') {
+                    limitedBody = limitedBody.substring(0, limitedBody.lastIndexOf(' '));
+                }
+                limitedBody += '...';
+            }
+
+            const listItem = document.createElement('li');
+            listItem.innerHTML =    `<a id="userlink1" href="user.html"><div class="post-headline">
+                                        <div class="profile-picture"></div>
+                                        <div class="profile-username"></div>
+                                    </div></a>
+                                    <div class="post-title">${post.title}</div>
+                                    <div class="post-body">${limitedBody}</div>
+                                    <div onclick="viewDetail(${post.id})"><p class="read-more">Read more ...</p></div>`;
+            postList.appendChild(listItem);
+
+            const profiles = document.querySelectorAll('.profile-picture');
+            profiles.forEach(profile => {
+                const randomColor = getRandomColor();
+                profile.style.backgroundColor = randomColor;
+            });
+            fetch(`https://dummyjson.com/users/${post.userId}`)
+                .then(res => res.json())
+                .then(userData => {
+                    const usernameElement = listItem.querySelector('.profile-username');
+                    if (usernameElement) {
+                        usernameElement.textContent = userData.username;
+                    }
+                })
+                .catch(error => console.error('Error fetching user:', error));
+        });
+    }
+    // Funktion zum Abrufen und Rendern von Beiträgen basierend auf der Seite
+    function fetchAndRenderPostsByPage(page) {
+        const skip = (page - 1) * postsPerPage;
+        fetch(`https://dummyjson.com/posts?limit=${postsPerPage}&skip=${skip}`)
+            .then(res => res.json())
+            .then(data => {
+                renderPosts(data.posts); // Rufen Sie die Render-Funktion auf, um die Beiträge anzuzeigen
+            })
+            .catch(error => console.error('Error fetching posts:', error));
+    }
+
+    // Funktion zum Abrufen und Rendern aller Beiträge mit Pagination
+    function fetchAndRenderPosts() {
+        fetch('https://dummyjson.com/posts')
+            .then(res => res.json())
+            .then(data => {
+                const totalPosts = data.total; // Gesamtzahl der Beiträge abrufen
+                const totalPages = Math.ceil(totalPosts / postsPerPage); // Anzahl der Seiten berechnen
+
+                paginationContainer.innerHTML = ''; // Leeren Sie den Paginierungscontainer
+
+                const paginationList = document.createElement('ul'); // Erstellen Sie eine ungeordnete Liste für die Pagination
+                paginationList.classList.add('pagination', 'justify-content-center'); // Bootstrap-Klassen hinzufügen
+
+                // Erstellen des vorherigen Seitenbuttons
+                const previousButton = document.createElement('li');
+                previousButton.classList.add('page-item');
+                const previousLink = document.createElement('a');
+                previousLink.classList.add('page-link');
+                previousLink.innerText = 'Previous';
+                previousLink.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--; // Gehe zur vorherigen Seite
+                        fetchAndRenderPostsByPage(currentPage); // Rufen Sie die Funktion zum Abrufen und Rendern von Beiträgen auf
+                        updatePagination(currentPage, totalPages); // Aktualisieren Sie die Pagination entsprechend
+                    }
+                });
+                previousButton.appendChild(previousLink);
+                paginationList.appendChild(previousButton);
+
+                // Berechnen Sie den Start- und Endpunkt für die Anzeige von Tabs
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, currentPage + 2);
+
+                // Wenn der Startpunkt größer als 1 ist, fügen Sie den ersten Tab hinzu
+                if (startPage > 1) {
+                    const firstPageButton = createPageButton(1);
+                    paginationList.appendChild(firstPageButton);
+                }
+
+                // Erstellen der Tabs für jede Seite und Hinzufügen von Event-Listenern
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageButton = createPageButton(i);
+                    paginationList.appendChild(pageButton);
+                }
+
+                // Wenn der Endpunkt kleiner als die Gesamtzahl der Seiten ist, fügen Sie den letzten Tab hinzu
+                if (endPage < totalPages) {
+                    const lastPageButton = createPageButton(totalPages);
+                    paginationList.appendChild(lastPageButton);
+                }
+
+                // Erstellen des nächsten Seitenbuttons
+                const nextButton = document.createElement('li');
+                nextButton.classList.add('page-item');
+                const nextLink = document.createElement('a');
+                nextLink.classList.add('page-link');
+                nextLink.innerText = 'Next';
+                nextLink.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++; // Gehe zur nächsten Seite
+                        fetchAndRenderPostsByPage(currentPage); // Rufen Sie die Funktion zum Abrufen und Rendern von Beiträgen auf
+                        updatePagination(currentPage, totalPages); // Aktualisieren Sie die Pagination entsprechend
+                    }
+                });
+                nextButton.appendChild(nextLink);
+                paginationList.appendChild(nextButton);
+
+                paginationContainer.appendChild(paginationList); // Fügen Sie die erstellte Paginierung zur HTML-Seite hinzu
+
+                fetchAndRenderPostsByPage(currentPage); // Rufen Sie die Funktion zum Abrufen und Rendern von Beiträgen auf der aktuellen Seite auf
+            })
+            .catch(error => console.error('Error fetching posts:', error));
+    }
+
+    function updatePagination(currentPage, totalPages) {
+        paginationContainer.innerHTML = '';
+    
+        const paginationList = document.createElement('ul');
+        paginationList.classList.add('pagination', 'justify-content-center');
+    
+        const previousButton = document.createElement('li');
+        previousButton.classList.add('page-item');
+        const previousLink = document.createElement('a');
+        previousLink.classList.add('page-link');
+        previousLink.innerText = 'Previous';
+        previousLink.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                fetchAndRenderPostsByPage(currentPage);
+                updatePagination(currentPage, totalPages);
+            }
+        });
+        previousButton.appendChild(previousLink);
+        paginationList.appendChild(previousButton);
+    
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+    
+        if (startPage > 1) {
+            const firstPageButton = createPageButton(1);
+            paginationList.appendChild(firstPageButton);
+        }
+        if (startPage > 3) {
+            const dots = createDotsButton();
+            paginationList.appendChild(dots);
+        }
+    
+        for (let i = startPage; i <= endPage; i++) {
+            if (i === currentPage) {
+                const pageButton = createPageButton(i, true);
+                paginationList.appendChild(pageButton);
+            } else {
+                const pageButton = createPageButton(i, false);
+                paginationList.appendChild(pageButton);
+            }
+        }
+    
+        if (endPage < totalPages - 1) {
+            const dots = createDotsButton();
+            paginationList.appendChild(dots);
+        }
+    
+        if (endPage < totalPages) {
+            const lastPageButton = createPageButton(totalPages, false);
+            paginationList.appendChild(lastPageButton);
+        }
+    
+        const nextButton = document.createElement('li');
+        nextButton.classList.add('page-item');
+        const nextLink = document.createElement('a');
+        nextLink.classList.add('page-link');
+        nextLink.innerText = 'Next';
+        nextLink.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchAndRenderPostsByPage(currentPage);
+                updatePagination(currentPage, totalPages);
+            }
+        });
+        nextButton.appendChild(nextLink);
+        paginationList.appendChild(nextButton);
+    
+        paginationContainer.appendChild(paginationList);
+    }
+    
+    function createPageButton(pageNumber, isActive) {
+        const pageButton = document.createElement('li');
+        pageButton.classList.add('page-item');
+        if (isActive) {
+            pageButton.classList.add('active');
+        }
+        const pageLink = document.createElement('a');
+        pageLink.classList.add('page-link');
+        pageLink.innerText = pageNumber;
+        pageLink.addEventListener('click', () => {
+            currentPage = pageNumber;
+            fetchAndRenderPostsByPage(currentPage);
+            updatePagination(currentPage, totalPages);
+        });
+        pageButton.appendChild(pageLink);
+        return pageButton;
+    }
+    
+    function createDotsButton() {
+        const dotsButton = document.createElement('li');
+        dotsButton.classList.add('page-item');
+        const dotsLink = document.createElement('a');
+        dotsLink.classList.add('page-link');
+        dotsLink.innerText = '...';
+        dotsButton.appendChild(dotsLink);
+        return dotsButton;
+    }
+    
+
+    fetchAndRenderPosts(); // Rufen Sie die Funktion zum Abrufen und Rendern von Beiträgen beim Laden der Seite auf
+});
+
+function viewDetail(id) {
+    window.location.href = `detail.html?id=${id}`; // Navigieren Sie zur Detailseite des ausgewählten Beitrags
+}
+
+posts.forEach(post => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML =    `<div class="post-headline">
+                                            <a id="userlink1">
+                                                <div class="profile-picture"></div>
+                                                <div class="profile-username"></div>
+                                            </a>
+                                            <div class="likes">
+                                                <div class="like-button" onclick="window.toggleLike(this)"></div>
+                                                <p id="reactions">${post.reactions}</p>
+                                            </div>
+                                            </div>
+                                        <div class="post-title">${post.title}</div>
+                                        <div class="post-body">${postBody}</div>`;
+                userPostsContainer.appendChild(listItem);
+            });
