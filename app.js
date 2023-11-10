@@ -146,41 +146,55 @@ window.createFullPost = function(post, postDetail, pictureColor) {
 window.performSearch = function() {
     if (event.key === "Enter") {
         const searchInput = document.getElementById('search-input').value;
-        const searchResultsContainer = document.getElementById('search-results');
-
-        if (searchInput === "") {
-            // Wenn die Eingabe leer ist, kehre auf Startseite zurück
-            swapContent("page-home", "Startseite")
-            return;
-        }
-        
-        // Rufe die Suchergebnisse von der API basierend auf der Eingabe ab und rendere sie
-        fetch(`https://dummyjson.com/posts/search?q=${searchInput}`)
-        .then(res => res.json())
-        .then(data => {
-            searchResultsContainer.innerHTML = '';
-
-            if (data.posts.length > 0 ) { // Falls ein Post vorhanden ist, zeige ihn an
-                data.posts.forEach(post => {
-                    const listItem = document.createElement('li');
-                    const color = window.getRandomColor();
-                    window.createPreviewPost(post, listItem, searchResultsContainer, color); // Rendert eine Vorschau des Posts
-                    window.getUsername(post.userId, listItem); // Holt den Benutzernamen basierend auf der User-ID
-                    window.getCommentNumber(post.id, listItem); // Holt die Anzahl der Kommentare basierend auf der Post-ID
-                });
-            }
-            else { // Ansonsten, spucke einen Alert aus, dass keine Ergebnisse gefunden wurden
-                const alertBox = document.createElement('div');
-                alertBox.classList.add('alert');
-                alertBox.innerHTML =    `<div class="alert-img"></div>
-                                        <p>No Matches Found, try again...</p>`;
-                searchResultsContainer.appendChild(alertBox);
-            }
-            window.location.hash = `#/search?q=${encodeURIComponent(searchInput)}`;
-            swapContent('page-search', 'Search Results');
-        })
-        .catch(error => console.error('Error searching posts', error));
+        searchFetch(searchInput)
     }
+}
+
+window.performMobileSearch = function(event,viewNumber) {
+    event.preventDefault();
+    let searchInput;
+    if(viewNumber == 1) 
+        searchInput = document.getElementById('mobileSearch-input').value;
+    else
+        searchInput = document.getElementById('mobileSearch-input2').value;
+    searchFetch(searchInput)
+}
+
+window.searchFetch = function(searchInput) {
+    const searchResultsContainer = document.getElementById('search-results');
+
+    if (searchInput === "") {
+        // Wenn die Eingabe leer ist, kehre auf Startseite zurück
+        swapContent("page-home", "Startseite")
+        return;
+    }
+    
+    // Rufe die Suchergebnisse von der API basierend auf der Eingabe ab und rendere sie
+    fetch(`https://dummyjson.com/posts/search?q=${searchInput}`)
+    .then(res => res.json())
+    .then(data => {
+        searchResultsContainer.innerHTML = '';
+
+        if (data.posts.length > 0 ) { // Falls ein Post vorhanden ist, zeige ihn an
+            data.posts.forEach(post => {
+                const listItem = document.createElement('li');
+                const color = window.getRandomColor();
+                window.createPreviewPost(post, listItem, searchResultsContainer, color); // Rendert eine Vorschau des Posts
+                window.getUsername(post.userId, listItem); // Holt den Benutzernamen basierend auf der User-ID
+                window.getCommentNumber(post.id, listItem); // Holt die Anzahl der Kommentare basierend auf der Post-ID
+            });
+        }
+        else { // Ansonsten, spucke einen Alert aus, dass keine Ergebnisse gefunden wurden
+            const alertBox = document.createElement('div');
+            alertBox.classList.add('alert');
+            alertBox.innerHTML =    `<div class="alert-img"></div>
+                                    <p>No matches found, try again...</p>`;
+            searchResultsContainer.appendChild(alertBox);
+        }
+        window.location.hash = `#/search?q=${encodeURIComponent(searchInput)}`;
+        swapContent('page-search', 'Search Results');
+    })
+    .catch(error => console.error('Error searching posts', error));
 }
 
 // Diese Funktion leitet den Benutzer zur Detailseite für einen bestimmten Beitrag weiter.

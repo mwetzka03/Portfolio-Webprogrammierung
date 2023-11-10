@@ -1,6 +1,6 @@
 /* Stil für den Post-Detail-Bereich */
 .post-detail {
-    background-color: #f9f9f9;
+    background-color: var(--color-secondary);;
     padding: 1em;
     padding-bottom: 0;
     margin: 1em;
@@ -19,7 +19,7 @@
 
 /* Stil für den Kommentarbereich */
 .comment-box {
-    background-color: #f9f9f9;
+    background-color: var(--color-secondary);;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
