@@ -18,6 +18,7 @@ body {
     justify-content: space-between;
     min-height: 100vh;
     --color-primary: #40E0D0;
+    --color-secondary: #FAFAFA;
 }
 
 /* Hauptbereichsstil */
@@ -205,6 +206,11 @@ header {
     margin-bottom: 0;
 }
 
+.mobileSearchbar input,
+.mobileSearchbar button {
+    background-color: var(--color-secondary);
+}
+
 /* Stil für die Post-Überschriften */
 .post-headline {
     display: flex;
@@ -216,20 +222,26 @@ header {
 }
 
 /* Stil für die Liste der Posts */
-#post-list {
+#post-list,
+#userpost-list,
+#search-results {
     list-style-type: none;
     padding: 1em;
 }
 
 /* Stil für Post-Listenpunkte */
-#post-list ul {
+#post-list ul,
+#userpost-list ul,
+#search-results ul {
     font-size: 110%;
     display: flex;
 }
 
 /* Stil für einzelne Post-Elemente */
-#post-list li {
-    background-color: #FAFAFA;
+#post-list li,
+#userpost-list li,
+#search-results li {
+    background-color: var(--color-secondary);
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 1em;
@@ -341,14 +353,21 @@ header {
 
 /* Media Query für Bildschirmbreiten über 50em */
 @media (min-width: 50em) {
+    .mobileSearchbar {
+        display: none;
+    }
     /* Anpassungen für die Post-Liste bei größeren Bildschirmen */
-    #post-list {
+    #post-list,
+    #userpost-list,
+    #search-results {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
     /* Anpassungen für einzelne Post-Elemente bei größeren Bildschirmen */
-    #post-list li {
+    #post-list li,
+    #userpost-list li,
+    #search-results li {
         width: 49%;
     }
 }
@@ -356,13 +375,17 @@ header {
 /* Media Query für Bildschirmbreiten über 75em */
 @media (min-width: 75em) {
     /* Anpassungen für die Post-Liste bei noch größeren Bildschirmen */
-    #post-list {
+    #post-list,
+    #userpost-list,
+    #search-results {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
     /* Weitere Anpassungen für einzelne Post-Elemente bei noch größeren Bildschirmen */
-    #post-list li {
+    #post-list li,
+    #userpost-list li,
+    #search-results li {
         width: 32%;
     }
 }
@@ -426,5 +449,9 @@ footer .copyright {
 
 
 .hidden {
+    display: none !important;
+}
+
+#pagination {
     display: none !important;
 }

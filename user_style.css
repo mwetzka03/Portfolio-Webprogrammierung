@@ -2,6 +2,7 @@
 .user-biography {
     display: flex;
     flex-direction: row;
+    padding: 1em;
     gap: 1em;
     align-items: center;
     justify-content: center;
@@ -31,82 +32,41 @@
 
 /* Stil für großes Profilbild */
 .profile-picture-big {
+    min-width: 2em;
+    min-height: 2em;
     width: 8em;
     height: 8em;
     background: url('https://fonts.gstatic.com/s/i/materialicons/account_circle/v12/24px.svg') no-repeat;
     background-size: contain;
     transition: background-color 0.3s;
+    background-position: 0 50%;
 }
 
 /* Stil für das Standortsymbol */
 .location-img {
+    min-width: 2em;
+    min-height: 2em;
     width: 2em;
     height: 2em;
     background: url('https://fonts.gstatic.com/s/i/materialicons/room/v12/24px.svg') no-repeat;
     background-size: contain;
+    background-position: 0 50%;
 }
 
 /* Stil für das Geburtssymbol */
 .birth-img {
+    min-width: 1.5em;
+    min-height: 1.5em;
     width: 2em;
     height: 2em;
     background: url('https://fonts.gstatic.com/s/i/materialicons/insert_invitation/v12/24px.svg') no-repeat;
     background-size: contain;
+    background-position: 0 50%;
 }
 
 /* Stil für Standort- und Geburtsinformationen */
 .location-info p,
 .birth-info p {
     margin: 0;
-    text-align: right;
-}
-
-/* Stil für die Liste der Posts */
-#userpost-list {
-    list-style-type: none;
-    padding: 1em;
-}
-
-/* Stil für Post-Listenpunkte */
-#userpost-list ul {
-    font-size: 110%;
-    display: flex;
-}
-
-/* Stil für einzelne Post-Elemente */
-#userpost-list li {
-    background-color: #FAFAFA;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 1em;
-    margin-bottom: 1em;
-    padding-bottom: 1em;
-}
-
-/* Media Query für Bildschirmbreiten über 50em */
-@media (min-width: 50em) {
-    /* Anpassungen für die Post-Liste bei größeren Bildschirmen */
-    #userpost-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    /* Anpassungen für einzelne Post-Elemente bei größeren Bildschirmen */
-    #userpost-list li {
-        width: 49%;
-    }
-}
-
-/* Media Query für Bildschirmbreiten über 75em */
-@media (min-width: 75em) {
-    /* Anpassungen für die Post-Liste bei noch größeren Bildschirmen */
-    #userpost-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    /* Weitere Anpassungen für einzelne Post-Elemente bei noch größeren Bildschirmen */
-    #userpost-list li {
-        width: 32%;
-    }
+    text-align: center;
 }

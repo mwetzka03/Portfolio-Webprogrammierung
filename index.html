@@ -32,10 +32,10 @@
                 <i class="material-icons" style="font-size:36px" id="account">account_circle</i> 
                 <i class="material-icons" style="font-size:36px" id="burger" onclick="toggleMenu()">menu</i>
                 <div class="overlay">
-                    <a href="#">Home</a>
-                    <a href="#">Log In</a>
-                    <a href="#">About</a>
-                    <a href="#">Legal Disclosure</a>
+                    <a href="#" onclick="toggleMenu()">Home</a>
+                    <a href="#"onclick="toggleMenu()" >Log In</a>
+                    <a href="#" onclick="toggleMenu()">About</a>
+                    <a href="#" onclick="toggleMenu()">Legal Disclosure</a>
                 <div class="close-icon" onclick="toggleMenu()">&times;</div>
                 </div>
             </section>
@@ -46,11 +46,23 @@
             </section>
             <section id="page-home" class="page hidden">
                 <h2>Newest Posts</h2>
+                <div class="container-fluid mb-3 mobileSearchbar">
+                    <form class="d-flex" role="search" onsubmit="performMobileSearch(event,1)">
+                        <input id="mobileSearch-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form>
+                </div>
                 <div id="pagination"></div>
                 <ul id="post-list"></ul>
             </section>
             <section id="page-search" class="page hidden">
                 <h2>Search Results</h2>
+                <div class="container-fluid mb-3 mobileSearchbar">
+                    <form class="d-flex" role="search" onsubmit="performMobileSearch(event,2)">
+                        <input id="mobileSearch-input2" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form>
+                </div>
                 <ul id="search-results"></ul>
             </section>
             <section id="page-detail" class="page hidden">
@@ -123,7 +135,6 @@
                 },{ 
                     url: "^/search\\?q=(.*)$",
                     show: () => {
-                        performSearch(),
                         swapContent("page-search", "Search");
                     }
                 }
