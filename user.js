@@ -37,6 +37,8 @@ function showUser(param) {
         })
         .catch(error => console.error('Error fetching user:', error));
   
+    userPostsContainer.innerHTML = '';
+
     // Holt die Beiträge des Benutzers von der API und rendert sie auf der Seite
     fetch('https://dummyjson.com/users/' + userId + '/posts')
         .then(res => res.json())
@@ -52,5 +54,5 @@ function showUser(param) {
                 window.getCommentNumber(post.id, listItem);
             });
         })
-        .catch(error => console.error('Error fetching posts:', error));
+        .catch(error => console.error('Error fetching userposts:', error));
 };
