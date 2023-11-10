@@ -93,6 +93,7 @@ class Router {
             return;
         }
 
+        console.log(`Found route for ${url}`);
         route.show(matches);
     }
 }

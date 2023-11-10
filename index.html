@@ -49,6 +49,10 @@
                 <div id="pagination"></div>
                 <ul id="post-list"></ul>
             </section>
+            <section id="page-search" class="page hidden">
+                <h2>Search Results</h2>
+                <ul id="search-results"></ul>
+            </section>
             <section id="page-detail" class="page hidden">
                 <div class = "post-detailed" id="post-detail"></div>
                 <section class="section-comments">
@@ -82,25 +86,24 @@
     </footer>
     </body>
     <script>
+        window.swapContent = (id, title) => {
+            document.querySelectorAll(".page").forEach(pageElement => {
+                pageElement.classList.add("hidden");
+            });
+
+            let elementsToShow = document.querySelector(`#${id}`);
+            if (elementsToShow) {
+                elementsToShow.classList.remove("hidden");
+            }
+
+            document.title = `${title} | CampusConnect`;
+            // Suchfeld zurücksetzen
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = "";
+            }
+        };
         window.addEventListener("load", () => {
-            let swapContent = (id, title) => {
-                document.querySelectorAll(".page").forEach(pageElement => {
-                    pageElement.classList.add("hidden");
-                });
-
-                let elementsToShow = document.querySelector(`#${id}`);
-                if (elementsToShow) {
-                    elementsToShow.classList.remove("hidden");
-                }
-
-                document.title = `${title} | CampusConnect`;
-                // Suchfeld zurücksetzen
-                const searchInput = document.getElementById('search-input');
-                if (searchInput) {
-                    searchInput.value = "";
-                }
-            };
-
             let routes = [
                 {
                     url: "^/$",
@@ -116,6 +119,12 @@
                     show: (param) => {
                         showUser(param),
                         swapContent("page-user", "User");
+                    }
+                },{ 
+                    url: "^/search\\?q=(.*)$",
+                    show: () => {
+                        performSearch(),
+                        swapContent("page-search", "Search");
                     }
                 }
             ];

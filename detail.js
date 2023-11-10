@@ -20,7 +20,7 @@ function showDetailedPost(param) {
             // Holt das HTML-Element, in dem die Kommentare angezeigt werden sollen
             const commentsSection = document.querySelector('.section-comments');
 
-            commentsSection.innerHTML = '';
+            commentsSection.innerHTML = ''; // Reset der Kommentare, damit keine Probleme auftreten
 
             // Überprüft, ob Kommentare vorhanden sind und rendert sie entsprechend
             if (data.comments.length > 0) {

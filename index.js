@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchAndRenderPosts(); // Holt und rendert alle Posts beim Laden der Seite
 
     document.getElementById('search-input').addEventListener('keydown', function(event) {
-        performSearch(event);
+        window.performSearch(event);
     });
 });
 
@@ -96,32 +96,4 @@ document.addEventListener('DOMContentLoaded', function () {
 function toggleSearchBar() {
     let searchBar = document.getElementById('searchBar');
     searchBar.classList.toggle('active');
-}
-
-// Funktion zum Durchführen einer Suche
-function performSearch() {
-    if (event.key === "Enter") {
-        const searchInput = document.getElementById('search-input').value;
-
-        if (searchInput === "") {
-            // Fügen Sie hier den Code ein, um die Seite zurückzusetzen oder neu zu laden, wenn die Sucheingabe leer ist
-            return;
-        }
-
-        // Ruft die Posts von der API basierend auf der Sucheingabe ab und rendert sie
-        fetch(`https://dummyjson.com/posts/search?q=${searchInput}`)
-        .then(res => res.json())
-        .then(data => {
-            const postList = document.getElementById('post-list');
-            postList.innerHTML = '';
-            data.posts.forEach(post => {
-                const listItem = document.createElement('li');
-                const color = window.getRandomColor();
-                window.createPreviewPost(post, listItem, postList, color); // Rendert eine Vorschau des Posts
-                window.getUsername(post.userId, listItem); // Holt den Benutzernamen basierend auf der User-ID
-                window.getCommentNumber(post.id, listItem); // Holt die Anzahl der Kommentare basierend auf der Post-ID
-            });
-        })
-        .catch(error => console.error('Error searching posts', error));
-    }
 }
