@@ -2,7 +2,7 @@
 function showUser(param) {
     // Extrahiert die userId aus den URL-Parametern
     const userId = param[1];
-    const userPostsContainer = document.getElementById('post-list');
+    const userPostsContainer = document.getElementById('userpost-list');
     const randomColor = window.getRandomColor();
 
     // Holt die Benutzerdaten von der API und rendert sie auf der Seite

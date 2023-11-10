@@ -86,6 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error fetching posts:', error));
     }
     fetchAndRenderPosts(); // Holt und rendert alle Posts beim Laden der Seite
+
+    document.getElementById('search-input').addEventListener('keydown', function(event) {
+        performSearch(event);
+    });
 });
 
 // Funktion zum Umschalten der Suchleiste
@@ -121,6 +125,3 @@ function performSearch() {
         .catch(error => console.error('Error searching posts', error));
     }
 }
-document.getElementById('search-input').addEventListener('keydown', function(event) {
-    performSearch(event);
-});
