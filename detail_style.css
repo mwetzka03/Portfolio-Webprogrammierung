@@ -24,7 +24,6 @@
     background-color: var(--color-secondary);;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     padding: 10px;
     margin: 1em;
