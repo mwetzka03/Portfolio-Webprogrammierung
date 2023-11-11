@@ -125,6 +125,11 @@ document.addEventListener('DOMContentLoaded', function () {
             updatePagination();
             paginationContainer.appendChild(paginationList);
             fetchAndRenderPostsByPage(currentPage);
+            // Nach oben scrollen
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Für einen sanften Scroll-Effekt
+            });
         }
     });
 
@@ -135,6 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
             updatePagination();
             paginationContainer.appendChild(paginationList);
             fetchAndRenderPostsByPage(currentPage);
+            // Nach oben scrollen
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Für einen sanften Scroll-Effekt
+            });
         }
     });
 
