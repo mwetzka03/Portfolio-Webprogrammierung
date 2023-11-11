@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="header_style.css">
+        <link rel="stylesheet" href="footer_style.css">
         <link rel="stylesheet" href="detail_style.css">
         <link rel="stylesheet" href="user_style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -28,14 +30,14 @@
                     <input id="search-input" type="text" placeholder="Search..." onkeydown="performSearch(event)">
                 </div>
                 <i class="material-icons" style="font-size:36px" id="search" onclick="toggleSearchBar()">search</i>
-                <a href="#"><i class="material-icons" style="font-size:36px" id="home">home</i></a>
-                <i class="material-icons" style="font-size:36px" id="account">account_circle</i> 
+                <i class="material-icons" style="font-size:36px" id="home" onclick="swapContent('page-home', 'Startseite')">home</i>
+                <i class="material-icons" style="font-size:36px" id="account" onclick="swapContent('page-coming-soon', 'Under Construction')" >account_circle</i> 
                 <i class="material-icons" style="font-size:36px" id="burger" onclick="toggleMenu()">menu</i>
                 <div class="overlay">
-                    <a href="#" onclick="toggleMenu()">Home</a>
-                    <a href="#"onclick="toggleMenu()" >Log In</a>
-                    <a href="#" onclick="toggleMenu()">About</a>
-                    <a href="#" onclick="toggleMenu()">Legal Disclosure</a>
+                    <a href="#" onclick="swapContent('page-home', 'Startseite'); toggleMenu()">Home</a>
+                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()" >Log In</a>
+                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()">About</a>
+                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()">Legal Disclosure</a>
                 <div class="close-icon" onclick="toggleMenu()">&times;</div>
                 </div>
             </section>
@@ -54,6 +56,10 @@
                 </div>
                 <div id="pagination"></div>
                 <ul id="post-list"></ul>
+                <div id="post-pagination" class="post-pagination">
+                    <button class="btn btn-outline-secondary" id="previous-post-button"> &laquo; Previous</button>
+                    <button class="btn btn-outline-secondary" id="next-post-button">Next &raquo; </button>
+                </div>
             </section>
             <section id="page-search" class="page hidden">
                 <h2>Search Results</h2>
@@ -75,6 +81,10 @@
                 <div id="biography"></div>
                 <ul id="userpost-list"></ul>
             </section>
+            <section id="page-coming-soon" class="page hidden">
+                <h2>Under Construction...</h2>
+                <h3>Coming Soon...</h3>
+            </section>
         </main>
         <footer>
         <div class="top-footer">
@@ -89,9 +99,9 @@
                 <a href="https://www.linkedin.com/in/mario-wetzka-3a6774268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><img class="icon linkedin" src="img/linkedin.png"></a>
             </div>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Legal Disclosure</a></li>
+                <li onclick="swapContent('page-home', 'Startseite')">Home</li>
+                <li onclick="swapContent('page-coming-soon', 'Under Construction')">About</li>
+                <li onclick="swapContent('page-coming-soon', 'Under Construction')">Legal Disclosure</li>
             </ul>
             <p class="copyright">Mario Wetzka © 2023</p>
         </div>
@@ -136,6 +146,11 @@
                     url: "^/search\\?q=(.*)$",
                     show: () => {
                         swapContent("page-search", "Search");
+                    }
+                },{ 
+                    url: "^/coming-soon$",
+                    show: () => {
+                        swapContent("page-coming-soon", "Under Construction");
                     }
                 }
             ];

@@ -1,0 +1,66 @@
+/* Footer-Stil */
+footer {
+    color: #f0f9ff;
+    font-size: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}   
+
+/* Stil für den oberen Bereich des Fußbereichs */
+.top-footer {
+    background-color: black;
+}
+
+/* Stil für den unteren Bereich des Fußbereichs mit Hintergrundbild */
+.bottom-footer {
+    background-image: url('img/footer_background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+/* Stil für die Karten im Footer */
+footer .map {
+    width: 100%;
+}
+
+/* Stil für den sozialen Bereich im Footer */
+footer .social {
+    margin-top: 1em;
+    text-align:center;
+}
+
+/* Stil für Social-Media-Icons im Footer */
+.social img {
+    width: 6em;
+}
+/* Stil für Listen im Footer */
+footer ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+}
+/* Stil für einzelne Listenelemente im Footer */
+footer ul li {
+    border: none;
+    font-family: white;
+    font-size: 1.2rem;
+}
+/* Stil für Links in Listenelementen im Footer */
+footer ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
+/* Stil für Copyright-Anmerkungen im Footer */
+footer .copyright {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

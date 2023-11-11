@@ -12,6 +12,12 @@ function toggleMenu() {
     }
 }
 
+// Funktion zum Umschalten der Suchleiste
+window.toggleSearchBar = function () {
+    let searchBar = document.getElementById('searchBar');
+    searchBar.classList.toggle('active');
+};
+
 // Diese Funktion generiert eine zufällige Hex-Farbe.
 window.getRandomColor = function() {
     // Zeichen für die Erzeugung der Hex-Farbe

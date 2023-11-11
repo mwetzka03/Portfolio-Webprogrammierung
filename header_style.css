@@ -1,0 +1,130 @@
+/* Stil für den Header */
+header {
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+/* Stil für Brand-Name und Logo */
+.brandname {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+}
+
+/* Stil für das Logo */
+.logo {
+    width: 4rem;
+}
+
+/* Stil für die Navigationsleiste */
+.nav-bar {
+    display: flex;
+    align-items: end;
+}
+
+/* Stil für Navigationslinks */
+.nav-bar a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Stil für Material Icons */
+.material-icons {
+    cursor: pointer;
+}
+
+/* Stil für verschiedene Elemente in der Navigationsleiste */
+#search,
+#account,
+#home,
+#searchBar,
+#searchBar.active {
+    display: none;
+}
+
+/* Stil für das Suchfeld */
+#searchBar input[type="text"] {
+    width: 100%;
+    height: 2rem;
+    font-size: max(1.8vh, 12pt);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Stil für das Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Stil für Links im Overlay */
+.overlay a {
+    font-size: max(3vh, 20pt);
+    color: #fff;
+    text-decoration: none;
+    margin: 2em;
+}
+
+/* Stil für das Schließen-Symbol im Overlay */
+.close-icon {
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+/* Media Query für Bildschirmbreiten über 50em */
+@media screen and (min-width: 50em) {
+    /* Stiländerungen für den Header bei größeren Bildschirmen */
+    header {
+        padding: 0;
+    }
+    /* Anpassungen für das Logo bei größeren Bildschirmen */
+    .logo {
+        width: 3rem;
+        margin-left: 0.5em;
+    }
+    /* Anpassungen für die Navigationsleiste bei größeren Bildschirmen */
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        padding-right: 1em;
+    }
+
+    /* Ausblenden des Burger-Menüs bei größeren Bildschirmen */
+    #burger {
+        display: none;
+    }
+
+    /* Ausblenden des Overlays bei größeren Bildschirmen */
+    .overlay {
+        display: none;
+    }
+
+    /* Einblenden von Suchleiste und anderen Elementen bei größeren Bildschirmen */
+    #search,
+    #account,
+    #home,
+    #searchBar.active {
+        display: flex;
+    }
+}

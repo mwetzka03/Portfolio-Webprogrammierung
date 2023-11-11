@@ -32,18 +32,6 @@ header, footer {
     box-sizing: border-box;
 }
 
-/* Footer-Stil */
-footer {
-    color: #f0f9ff;
-    font-size: 80%;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0;
-}   
-
 /* Standardstil für Textabsätze */
 p {
     text-align: justify;
@@ -53,140 +41,6 @@ p {
 h1, h2 {
     display: flex;
     justify-content: center;
-}
-
-/* ------------------- */
-/* HEADER */
-
-/* Stil für den Header */
-header {
-    background-color: white;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-}
-
-/* Stil für Brand-Name und Logo */
-.brandname {
-    display: flex;
-    align-items: center;
-    margin-right: 1em;
-}
-
-/* Stil für das Logo */
-.logo {
-    width: 4rem;
-}
-
-/* Stil für die Navigationsleiste */
-.nav-bar {
-    display: flex;
-    align-items: end;
-}
-
-/* Stil für Navigationslinks */
-.nav-bar a {
-    text-decoration: none;
-    color: black;
-}
-
-/* Stil für Material Icons */
-.material-icons {
-    cursor: pointer;
-}
-
-/* Stil für verschiedene Elemente in der Navigationsleiste */
-#search,
-#account,
-#home,
-#searchBar,
-#searchBar.active {
-    display: none;
-}
-
-/* Stil für das Suchfeld */
-#searchBar input[type="text"] {
-    width: 100%;
-    height: 2rem;
-    font-size: max(1.8vh, 12pt);
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Stil für das Overlay */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 999;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-/* Stil für Links im Overlay */
-.overlay a {
-    font-size: max(3vh, 20pt);
-    color: #fff;
-    text-decoration: none;
-    margin: 2em;
-}
-
-/* Stil für das Schließen-Symbol im Overlay */
-.close-icon {
-    color: #fff;
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 3rem;
-    cursor: pointer;
-}
-
-/* Media Query für Bildschirmbreiten über 50em */
-@media screen and (min-width: 50em) {
-    /* Stiländerungen für den Header bei größeren Bildschirmen */
-    header {
-        padding: 0;
-    }
-    /* Anpassungen für das Logo bei größeren Bildschirmen */
-    .logo {
-        width: 3rem;
-        margin-left: 0.5em;
-    }
-    /* Anpassungen für die Navigationsleiste bei größeren Bildschirmen */
-    .nav-bar {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        padding-right: 1em;
-    }
-
-    /* Ausblenden des Burger-Menüs bei größeren Bildschirmen */
-    #burger {
-        display: none;
-    }
-
-    /* Ausblenden des Overlays bei größeren Bildschirmen */
-    .overlay {
-        display: none;
-    }
-
-    /* Einblenden von Suchleiste und anderen Elementen bei größeren Bildschirmen */
-    #search,
-    #account,
-    #home,
-    #searchBar.active {
-        display: flex;
-    }
 }
 
 /*-------------*/
@@ -227,6 +81,10 @@ header {
 #search-results {
     list-style-type: none;
     padding: 1em;
+}
+
+#post-list {
+    margin-bottom: 0em;
 }
 
 /* Stil für Post-Listenpunkte */
@@ -390,68 +248,42 @@ header {
     }
 }
 
-/*-------------*/
-/* FUSSBEREICH */
-
-/* Stil für den oberen Bereich des Fußbereichs */
-.top-footer {
-    background-color: black;
-}
-
-/* Stil für den unteren Bereich des Fußbereichs mit Hintergrundbild */
-.bottom-footer {
-    background-image: url('img/footer_background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-/* Stil für die Karten im Footer */
-footer .map {
-    width: 100%;
-}
-
-/* Stil für den sozialen Bereich im Footer */
-footer .social {
-    margin-top: 1em;
-    text-align:center;
-}
-
-/* Stil für Social-Media-Icons im Footer */
-.social img {
-    width: 6em;
-}
-/* Stil für Listen im Footer */
-footer ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 1em;
-}
-/* Stil für einzelne Listenelemente im Footer */
-footer ul li {
-    border: none;
-    font-family: white;
-}
-/* Stil für Links in Listenelementen im Footer */
-footer ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-}
-/* Stil für Copyright-Anmerkungen im Footer */
-footer .copyright {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
 .hidden {
     display: none !important;
 }
 
 #pagination {
-    display: none !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    margin: 0 5px;
+    cursor: pointer;
+    list-style: none;
+    padding: 5px 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.pagination-button.active {
+    background-color: #40e0d0;
+    color: #fff;
+}
+
+.pagination-ellipsis {
+    margin: 0 5px;
+    list-style: none;
+    padding: 5px 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    cursor: not-allowed; /* Cursor deaktivieren */
+}
+
+.post-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em;
+    margin-top: 0em;
 }
