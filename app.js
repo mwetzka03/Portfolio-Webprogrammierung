@@ -174,7 +174,7 @@ window.searchFetch = function(searchInput) {
         swapContent("page-home", "Startseite")
         return;
     }
-    
+    document.getElementById('search-result-text').innerHTML = `Search results for "${searchInput}"`
     // Rufe die Suchergebnisse von der API basierend auf der Eingabe ab und rendere sie
     fetch(`https://dummyjson.com/posts/search?q=${searchInput}`)
     .then(res => res.json())

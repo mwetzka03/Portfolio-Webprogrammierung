@@ -17,8 +17,9 @@ header {
 }
 
 /* Stil für das Logo */
-.logo {
+#logo {
     width: 4rem;
+    cursor: pointer;
 }
 
 /* Stil für die Navigationsleiste */
@@ -76,14 +77,14 @@ header {
 /* Stil für Links im Overlay */
 .overlay a {
     font-size: max(3vh, 20pt);
-    color: #fff;
+    color: white;
     text-decoration: none;
     margin: 2em;
 }
 
 /* Stil für das Schließen-Symbol im Overlay */
 .close-icon {
-    color: #fff;
+    color: white;
     position: absolute;
     top: 20px;
     right: 30px;

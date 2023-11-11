@@ -19,6 +19,7 @@ body {
     min-height: 100vh;
     --color-primary: #40E0D0;
     --color-secondary: #FAFAFA;
+    --color-tertiary: #dddddd;
 }
 
 /* Hauptbereichsstil */
@@ -38,9 +39,17 @@ p {
 }
 
 /* Überschriftenstil */
-h1, h2 {
+h1, h2, h3 {
     display: flex;
     justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#page-coming-soon {
+    margin-top: 2em;
 }
 
 /*-------------*/
@@ -52,17 +61,6 @@ h1, h2 {
     background-size: cover;
     min-height: 18em;
     background-position: 0 80%;
-}
-
-/* Stil für Überschriften in Post-Abschnitten */
-#page-home h2 {
-    font-size: 250%;
-    margin-bottom: 0;
-}
-
-.mobileSearchbar input,
-.mobileSearchbar button {
-    background-color: var(--color-secondary);
 }
 
 /* Stil für die Post-Überschriften */
@@ -100,7 +98,7 @@ h1, h2 {
 #userpost-list li,
 #search-results li {
     background-color: var(--color-secondary);
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-tertiary);
     border-radius: 5px;
     padding: 1em;
     margin-bottom: 1em;
@@ -134,7 +132,6 @@ h1, h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
     transition: background-color 0.3s;
     cursor: pointer;
 }
@@ -211,9 +208,6 @@ h1, h2 {
 
 /* Media Query für Bildschirmbreiten über 50em */
 @media (min-width: 50em) {
-    .mobileSearchbar {
-        display: none;
-    }
     /* Anpassungen für die Post-Liste bei größeren Bildschirmen */
     #post-list,
     #userpost-list,
@@ -246,44 +240,4 @@ h1, h2 {
     #search-results li {
         width: 32%;
     }
-}
-
-.hidden {
-    display: none !important;
-}
-
-#pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination-button {
-    margin: 0 5px;
-    cursor: pointer;
-    list-style: none;
-    padding: 5px 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-}
-
-.pagination-button.active {
-    background-color: #40e0d0;
-    color: #fff;
-}
-
-.pagination-ellipsis {
-    margin: 0 5px;
-    list-style: none;
-    padding: 5px 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-    cursor: not-allowed; /* Cursor deaktivieren */
-}
-
-.post-pagination {
-    display: flex;
-    justify-content: space-between;
-    margin: 2em;
-    margin-top: 0em;
 }

@@ -2,37 +2,48 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
+
+        <!-- Diverse Stylesheets inklusive Icons-->
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="header_style.css">
         <link rel="stylesheet" href="footer_style.css">
+        <link rel="stylesheet" href="home_style.css">
         <link rel="stylesheet" href="detail_style.css">
         <link rel="stylesheet" href="user_style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        
+        <!-- Bootstrap Implementierung-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="img/logo.png">
+        
+        <!-- Diverse JavaScript Dateien-->
+        <script src = "router.js"></script>
         <script src = "app.js"></script>
-        <script src = "index.js"></script>
+        <script src = "home.js"></script>
         <script src = "detail.js"></script>
         <script src = "user.js"></script>
-        <script src = "router.js"></script>
+        
         <title>CampusConnect</title>
     </head>
     <body>
         <header>
             <section class="brandname">
-                <img class="logo" src="img/logo.png" alt="Logo">
+                <img id="logo" src="img/logo.png" alt="Logo" onclick="swapContent('page-home', 'Startseite')">
                 <h1>CampusConnect</h1>
             </section>
             <section class="nav-bar">
                 <div class="search-bar" id="searchBar">
                     <input id="search-input" type="text" placeholder="Search..." onkeydown="performSearch(event)">
                 </div>
+                <!-- Icons -->
                 <i class="material-icons" style="font-size:36px" id="search" onclick="toggleSearchBar()">search</i>
                 <i class="material-icons" style="font-size:36px" id="home" onclick="swapContent('page-home', 'Startseite')">home</i>
                 <i class="material-icons" style="font-size:36px" id="account" onclick="swapContent('page-coming-soon', 'Under Construction')" >account_circle</i> 
                 <i class="material-icons" style="font-size:36px" id="burger" onclick="toggleMenu()">menu</i>
+                <!-- Overlay Menu, welches beim Klicken in der Mobile-Ansicht geöffnet wird-->
                 <div class="overlay">
                     <a href="#" onclick="swapContent('page-home', 'Startseite'); toggleMenu()">Home</a>
                     <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()" >Log In</a>
@@ -46,41 +57,56 @@
             <section class="section-eyecatcher">
                 <!-- https://pixabay.com/de/photos/menschen-m%C3%A4nner-frauen-abschluss-2562626/ -->
             </section>
+            <!-- Home-Page -->
             <section id="page-home" class="page hidden">
-                <h2>Newest Posts</h2>
-                <div class="container-fluid mb-3 mobileSearchbar">
-                    <form class="d-flex" role="search" onsubmit="performMobileSearch(event,1)">
-                        <input id="mobileSearch-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </form>
+                <div class="welcome-part">
+                    <h2>Welcome to CampusConnect!</h2>
+                    <!-- Suchleiste -->
+                    <div class="container-fluid mobileSearchbar"> 
+                        <form class="d-flex" role="search" onsubmit="performMobileSearch(event,1)">
+                            <input id="mobileSearch-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <div class="search-info">
+                        <i class="material-icons" style="font-size:36px" id="info">info</i>
+                        <p>You can search for specific posts here or in the menu bar if you are on PC!</p>
+                    </div>
                 </div>
-                <div id="pagination"></div>
-                <ul id="post-list"></ul>
-                <div id="post-pagination" class="post-pagination">
-                    <button class="btn btn-outline-secondary" id="previous-post-button"> &laquo; Previous</button>
-                    <button class="btn btn-outline-secondary" id="next-post-button">Next &raquo; </button>
+                <div class="all-posts-part">
+                    <h2>All Posts</h2>
+                    <div id="pagination"></div> <!-- Pagination um Pages zu wechseln (12 Posts per Page)-->
                 </div>
+                    <ul id="post-list"></ul> <!-- Angezeigte Posts -->
+                    <!-- Zurück und Weiterbutton für die Posts -->
+                    <div id="post-pagination" class="post-pagination">
+                        <button class="btn btn-outline-secondary" id="previous-post-button"> &laquo; Previous</button>
+                        <button class="btn btn-outline-secondary" id="next-post-button">Next &raquo; </button>
+                    </div>
             </section>
+            <!-- Suchergebnisse-Page-->
             <section id="page-search" class="page hidden">
-                <h2>Search Results</h2>
-                <div class="container-fluid mb-3 mobileSearchbar">
+                <!-- Suchleiste -->
+                <div class="container-fluid mobileSearchbar resultVariant">
                     <form class="d-flex" role="search" onsubmit="performMobileSearch(event,2)">
                         <input id="mobileSearch-input2" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
                         <button class="btn btn-outline-secondary" type="submit">Search</button>
                     </form>
                 </div>
-                <ul id="search-results"></ul>
+                <p id="search-result-text"></p>
+                <ul id="search-results"></ul> <!-- Postergebnisse -->
             </section>
+            <!-- Detailansicht-Page -->
             <section id="page-detail" class="page hidden">
                 <div class = "post-detailed" id="post-detail"></div>
-                <section class="section-comments">
-                <h2>Comments</h2>    
-                </section>
+                <div class="section-comments"></div>
             </section>
+            <!-- Useransicht-Page -->
             <section id="page-user" class="page hidden">
                 <div id="biography"></div>
                 <ul id="userpost-list"></ul>
             </section>
+            <!-- Coming-Soon-Page -->
             <section id="page-coming-soon" class="page hidden">
                 <h2>Under Construction...</h2>
                 <h3>Coming Soon...</h3>
@@ -91,7 +117,7 @@
             <h1>CampusConnect</h1>
         </div>
         <div class="bottom-footer">
-            <div class="social">
+            <div class="social"> <!-- Social Icons -->
                 <!-- https://pixabay.com/vectors/social-media-marketing-social-icons-5995266/ -->
                 <a href="#"><img class="icon facebook" src="img/facebook.png"></a>
                 <a href="https://www.instagram.com/official.mario03/"><img class="icon instagram" src="img/instagram.png"></a>
