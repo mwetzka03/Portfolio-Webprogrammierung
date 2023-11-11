@@ -1,4 +1,5 @@
-// Wird ausgeführt, wenn das DOM vollständig geladen ist
+// !! In dieser JavaScript befinden sich die Methoden, die in der Home-Ansicht relevant sind !!
+
 document.addEventListener('DOMContentLoaded', function () {
     // Globale Variablen
     const postsPerPage = 12; // Anzahl der Beiträge pro Seite
@@ -9,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const previousPostButton = document.getElementById('previous-post-button'); // DOM-Element für den vorherigen Seiten-Button
     const nextPostButton = document.getElementById('next-post-button'); // DOM-Element für den nächsten Seiten-Button
     const paginationList = document.createElement('ul'); // Erstellung einer ungeordneten Liste für die Seitennummerierung
+
+    let currentHash = window.location.hash;
+    if (currentHash === "" || currentHash === "#/") {
+        window.location.hash = "/home";
+    }
 
     // Globale Funktionen
 

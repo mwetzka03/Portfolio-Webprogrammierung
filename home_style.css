@@ -1,8 +1,12 @@
+/* !! In dieser CSS befinden sich alle relevanten Stile für die Home- & Suchansicht */
+
+/* Styling für die mobile Suchleiste */
 .mobileSearchbar input,
 .mobileSearchbar button {
     background-color: var(--color-secondary);
 }
 
+/* Styling für die Paginierung */
 #pagination {
     display: flex;
     justify-content: center;
@@ -19,10 +23,12 @@
     font-size: 140%;
 }
 
+/* Aktiver Zustand der Paginierungstaste */
 .pagination-button.active {
     background-color: var(--color-primary);
 }
 
+/* Stil für die Auslassungspunkte in der Paginierung */
 .pagination-ellipsis {
     margin: 0 5px;
     list-style: none;
@@ -32,6 +38,8 @@
     cursor: not-allowed; /* Cursor deaktivieren */
     font-size: 140%;
 }
+
+/* Styling für die Seiten-Paginierung */
 .post-pagination {
     display: flex;
     justify-content: space-between;
@@ -39,6 +47,7 @@
     margin-top: 0;
 }
 
+/* Styling für den Willkommensbereich */
 .welcome-part {
     display: flex;
     flex-direction: column;
@@ -48,12 +57,13 @@
     background-color: var(--color-primary);
 }
 
-.welcome-part h2{
+.welcome-part h2 {
     font-size: 250%;
     display: flex;
     text-align: center;
 }
 
+/* Styling für den Bereich mit allen Beiträgen */
 .all-posts-part {
     display: flex;
     flex-direction: column;
@@ -61,10 +71,11 @@
     background-color: var(--color-secondary);
 }
 
-.all-posts-part h2{
+.all-posts-part h2 {
     font-size: 200%;
 }
 
+/* Styling für Informationen zur Suche */
 .search-info {
     display: flex;
     flex-direction: row;
@@ -77,11 +88,13 @@
     margin: 0;
 }
 
+/* Styling für verschiedene Suchergebnisvarianten */
 .resultVariant {
     background-color: var(--color-primary);
     padding: 2em;
 }
 
+/* Styling für den Text der Suchergebnisse */
 #search-result-text {
     display: flex;
     justify-content: center;
@@ -91,7 +104,9 @@
     background-color: var(--color-secondary);
 }
 
+/* Media Query für Bildschirme mit einer Breite von mindestens 50em */
 @media (min-width: 50em) {
+    /* Verstecke die mobile Suchleiste */
     .mobileSearchbar {
         display: none;
     }

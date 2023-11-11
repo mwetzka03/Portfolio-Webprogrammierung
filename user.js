@@ -1,4 +1,5 @@
-// Wird ausgeführt, wenn das DOM vollständig geladen ist
+// !! In dieser JavaScript befinden sich die Methoden, die in der User-Ansicht relevant sind !!
+
 function showUser(param) {
     // Extrahiert die userId aus den URL-Parametern
     const userId = param[1];

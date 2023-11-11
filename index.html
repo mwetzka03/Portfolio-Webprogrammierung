@@ -25,13 +25,13 @@
         <script src = "home.js"></script>
         <script src = "detail.js"></script>
         <script src = "user.js"></script>
-        
+
         <title>CampusConnect</title>
     </head>
     <body>
         <header>
             <section class="brandname">
-                <img id="logo" src="img/logo.png" alt="Logo" onclick="swapContent('page-home', 'Startseite')">
+                <img id="logo" src="img/logo.png" alt="Logo" onclick="viewHome()">
                 <h1>CampusConnect</h1>
             </section>
             <section class="nav-bar">
@@ -40,15 +40,15 @@
                 </div>
                 <!-- Icons -->
                 <i class="material-icons" style="font-size:36px" id="search" onclick="toggleSearchBar()">search</i>
-                <i class="material-icons" style="font-size:36px" id="home" onclick="swapContent('page-home', 'Startseite')">home</i>
-                <i class="material-icons" style="font-size:36px" id="account" onclick="swapContent('page-coming-soon', 'Under Construction')" >account_circle</i> 
+                <i class="material-icons" style="font-size:36px" id="home" onclick="viewHome()">home</i>
+                <i class="material-icons" style="font-size:36px" id="account" onclick="viewConstruction()" >account_circle</i> 
                 <i class="material-icons" style="font-size:36px" id="burger" onclick="toggleMenu()">menu</i>
                 <!-- Overlay Menu, welches beim Klicken in der Mobile-Ansicht geöffnet wird-->
                 <div class="overlay">
-                    <a href="#" onclick="swapContent('page-home', 'Startseite'); toggleMenu()">Home</a>
-                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()" >Log In</a>
-                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()">About</a>
-                    <a href="#" onclick="swapContent('page-coming-soon', 'Under Construction'); toggleMenu()">Legal Disclosure</a>
+                    <a href="#" onclick="toggleMenu(); viewHome()">Home</a>
+                    <a href="#" onclick="toggleMenu(); viewConstruction()" >Log In</a>
+                    <a href="#" onclick="toggleMenu(); viewConstruction()">About</a>
+                    <a href="#" onclick="toggleMenu(); viewConstruction()">Legal Disclosure</a>
                 <div class="close-icon" onclick="toggleMenu()">&times;</div>
                 </div>
             </section>
@@ -125,9 +125,9 @@
                 <a href="https://www.linkedin.com/in/mario-wetzka-3a6774268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><img class="icon linkedin" src="img/linkedin.png"></a>
             </div>
             <ul>
-                <li onclick="swapContent('page-home', 'Startseite')">Home</li>
-                <li onclick="swapContent('page-coming-soon', 'Under Construction')">About</li>
-                <li onclick="swapContent('page-coming-soon', 'Under Construction')">Legal Disclosure</li>
+                <li onclick="viewHome()">Home</li>
+                <li onclick="viewConstruction()">About</li>
+                <li onclick="viewConstruction()">Legal Disclosure</li>
             </ul>
             <p class="copyright">Mario Wetzka © 2023</p>
         </div>
@@ -154,8 +154,11 @@
         window.addEventListener("load", () => {
             let routes = [
                 {
-                    url: "^/$",
-                    show: () => swapContent("page-home", "Startseite"),
+                    url: "^/(|home)$",
+                    show: () => {
+                        swapContent("page-home", "Startseite");
+                        history.replaceState({}, "", "/CampusConnect");
+                    },
                 },{
                     url: "^/posts/(.*)$",
                     show: (param) => {

@@ -1,3 +1,37 @@
+// !! In dieser JavaScript befinden sich alle Methoden, die in mehrere Ansichten relevant sind !!
+
+// Diese Funktion ändert die Url für den Router und zeigt die Detailansicht eines Beitrags an
+window.viewDetail = function(id) {
+    window.location.hash = `/posts/${id}`;
+}
+
+// Diese Funktion ändert die Url für den Router und zeigt die Benutzeransicht an
+window.viewUser = function(id) {
+    window.location.hash = `/users/${id}`
+}
+
+// Diese Funktion ändert die Url für den Router und zeigt die Startseite an
+window.viewHome = function() {
+    window.location.hash = `/home`
+}
+
+// Diese Funktion ändert die Url für den Router und zeigt die Baustellenseite an
+window.viewConstruction = function() {
+    window.location.hash = `/coming-soon`
+}
+
+// Diese Funktion generiert eine zufällige Hex-Farbe.
+window.getRandomColor = function() {
+    // Zeichen für die Erzeugung der Hex-Farbe
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    // Schleife zum Erstellen einer zufälligen Farbe
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+};
+
 // Diese Funktion steuert das Umschalten des Overlay-Menüs ein und aus.
 function toggleMenu() {
     // Abrufen des Overlay-Elements
@@ -16,18 +50,6 @@ function toggleMenu() {
 window.toggleSearchBar = function () {
     let searchBar = document.getElementById('searchBar');
     searchBar.classList.toggle('active');
-};
-
-// Diese Funktion generiert eine zufällige Hex-Farbe.
-window.getRandomColor = function() {
-    // Zeichen für die Erzeugung der Hex-Farbe
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    // Schleife zum Erstellen einer zufälligen Farbe
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
 };
 
 // Diese Funktion steuert das Umschalten des Like-Buttons und die Aktualisierung der Anzahl der Reaktionen.
@@ -52,7 +74,6 @@ window.toggleLike = function(likeButton) {
 
     likeButton.classList.toggle('liked');
 }
-
 
 // Diese Funktion ruft den Benutzernamen über die API ab und aktualisiert das entsprechende DOM-Element.
 window.getUsername = function(userId, listItem) {
@@ -148,7 +169,8 @@ window.createFullPost = function(post, postDetail, pictureColor) {
     window.getUsername(post.userId, postDetail)
     postDetail.innerHTML = postDetailHTML;
 }
-// Funktion zum Durchführen einer Suche
+
+// Folgende Funktionen sind für die Suchfunktion zuständig
 window.performSearch = function() {
     if (event.key === "Enter") {
         const searchInput = document.getElementById('search-input').value;
@@ -202,14 +224,3 @@ window.searchFetch = function(searchInput) {
     })
     .catch(error => console.error('Error searching posts', error));
 }
-
-// Diese Funktion leitet den Benutzer zur Detailseite für einen bestimmten Beitrag weiter.
-window.viewDetail = function(id) {
-    window.location.hash = `/posts/${id}`;
-}
-
-// Diese Funktion leitet den Benutzer zur Benutzerseite für einen bestimmten Benutzer weiter.
-window.viewUser = function(id) {
-    window.location.hash = `/users/${id}`
-}
-

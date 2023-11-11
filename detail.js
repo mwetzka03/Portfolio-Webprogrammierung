@@ -1,4 +1,5 @@
-// Diese Funktion wird ausgeführt, wenn das DOM vollständig geladen ist.
+// !! In dieser JavaScript befinden sich die Methoden, die in der Detail-Ansicht relevant sind !!
+
 function showDetailedPost(param) {
     const postId = param[1];
     const randomColor = window.getRandomColor();
