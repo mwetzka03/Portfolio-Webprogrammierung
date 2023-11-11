@@ -21,6 +21,11 @@ function showDetailedPost(param) {
             const commentsSection = document.querySelector('.section-comments');
 
             commentsSection.innerHTML = ''; // Reset der Kommentare, damit keine Probleme auftreten
+            
+            const commentHeadline = document.createElement('div'); // Erstellt Überschrift für Kommentare
+            commentHeadline.classList.add('comment-headline');
+            commentHeadline.innerHTML = `<h2>Comments</h2>`;
+            commentsSection.appendChild(commentHeadline);
 
             // Überprüft, ob Kommentare vorhanden sind und rendert sie entsprechend
             if (data.comments.length > 0) {

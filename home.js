@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchAndRenderPostsByPage(currentPage);
             // Nach oben scrollen
             window.scrollTo({
-                top: 0,
+                top: 200,
                 behavior: 'smooth' // Für einen sanften Scroll-Effekt
             });
         }
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchAndRenderPostsByPage(currentPage);
             // Nach oben scrollen
             window.scrollTo({
-                top: 0,
+                top: 200,
                 behavior: 'smooth' // Für einen sanften Scroll-Effekt
             });
         }
