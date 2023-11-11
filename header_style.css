@@ -10,6 +10,10 @@ header {
     align-items: center; 
 }
 
+header h1 {
+    margin: 0;
+}
+
 /* Stil für Brand-Name und Logo */
 .brandname {
     display: flex;

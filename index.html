@@ -46,10 +46,10 @@
                 <!-- Overlay Menu, welches beim Klicken in der Mobile-Ansicht geöffnet wird-->
                 <div class="overlay">
                     <a href="#" onclick="toggleMenu(); viewHome()">Home</a>
-                    <a href="#" onclick="toggleMenu(); viewConstruction()" >Log In</a>
+                    <a href="#" onclick="toggleMenu(); viewConstruction()">Log In</a>
                     <a href="#" onclick="toggleMenu(); viewConstruction()">About</a>
                     <a href="#" onclick="toggleMenu(); viewConstruction()">Legal Disclosure</a>
-                <div class="close-icon" onclick="toggleMenu()">&times;</div>
+                    <div class="close-icon" onclick="toggleMenu()">&times;</div>
                 </div>
             </section>
         </header>
@@ -157,7 +157,6 @@
                     url: "^/(|home)$",
                     show: () => {
                         swapContent("page-home", "Startseite");
-                        history.replaceState({}, "", "/CampusConnect");
                     },
                 },{
                     url: "^/posts/(.*)$",

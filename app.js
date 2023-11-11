@@ -17,6 +17,7 @@ window.viewHome = function() {
 
 // Diese Funktion ändert die Url für den Router und zeigt die Baustellenseite an
 window.viewConstruction = function() {
+    event.preventDefault();
     window.location.hash = `/coming-soon`
 }
 
